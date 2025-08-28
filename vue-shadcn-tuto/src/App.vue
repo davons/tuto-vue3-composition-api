@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
+import LoginForm from './components/LoginForm.vue'
 </script>
 
 <template>
-  <div>
-    <Button>Click me</Button>
-  </div>
+  <LoginForm class="m-5" />
 </template>
