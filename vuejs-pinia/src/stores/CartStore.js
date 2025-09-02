@@ -1,11 +1,12 @@
 import { groupBy } from "lodash";
 import { defineStore, acceptHMRUpdate } from "pinia";
+import { useLocalStorage } from "@vueuse/core";
 import { useAuthUserStore } from "./AuthUserStore";
 
 export const useCartStore = defineStore('CartStore', {
     state: () => {
         return {
-            items: []
+            items: useLocalStorage("CartStore:items", [])
         }
     },
     actions: {
