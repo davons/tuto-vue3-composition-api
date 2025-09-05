@@ -1,11 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useCycleList } from './composables/useCycleList'
+
+const { state, prev, next, go } = useCycleList(['Dog', 'Cat', 'Bird', 'Iguana'])
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <h1>Composables</h1>
+  <div>
+    {{ state }}
+    <br />
+    <button @click="prev">Previous</button> <button @click="next">Next</button>
+    <button @click="go(2)">Go to {{ 2 }}</button>
+  </div>
 </template>
 
 <style scoped></style>
