@@ -1,9 +1,40 @@
 import { computed, ref, toRef, type Ref, type MaybeRefOrGetter } from 'vue'
 
-export const useCycleList = (list: MaybeRefOrGetter<any[]>) => {
+export interface ICycleListConfig {
+  fallbackIndex?: number
+  fallbackValue?: any
+}
+
+export const configDefault: ICycleListConfig = {
+  fallbackIndex: undefined,
+  fallbackValue: undefined,
+}
+
+export const useCycleList = (list: MaybeRefOrGetter<any[]>, config?: ICycleListConfig) => {
+  const _config = {
+    ...configDefault,
+    ...config,
+  }
+
+  console.log(_config)
+
   const activeIndex = ref(0)
   const _list = toRef(list)
-  const state = computed(() => _list.value[activeIndex.value])
+
+  //const state = computed(() => _list.value[activeIndex.value])
+  const state = computed({
+    get() {
+      return _list.value[activeIndex.value]
+    },
+    set(value) {
+      const foundIndex = _list.value.indexOf(value)
+      if (foundIndex != -1) {
+        activeIndex.value = foundIndex
+      } else {
+        throw new Error(`Index ${foundIndex} not exist`)
+      }
+    },
+  })
 
   const next = () => {
     if (activeIndex.value === _list.value.length - 1) {

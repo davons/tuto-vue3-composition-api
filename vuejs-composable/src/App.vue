@@ -4,9 +4,10 @@ import { useCycleList } from './composables/useCycleList'
 
 const items = ref(['Dog', 'Cat', 'Bird', 'Iguana'])
 
-const { state, prev, next, go } = useCycleList(items)
+const { state, prev, next, go } = useCycleList(items, { fallbackIndex: 0 })
 //const { state, prev, next, go } = useCycleList(['Dog', 'Cat', 'Bird', 'Iguana'])
 //const { state, prev, next, go } = useCycleList(() => ['Dog', 'Cat', 'Bird', 'Iguana'])
+state.value = 'Bird'
 
 const goto = ref(0)
 </script>
