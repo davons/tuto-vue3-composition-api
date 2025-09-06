@@ -10,16 +10,16 @@ export const configDefault: ICycleListConfig = {
   fallbackValue: undefined,
 }
 
-export const useCycleList = (list: MaybeRefOrGetter<any[]>, config?: ICycleListConfig) => {
+export const useCycleList = <T>(list: MaybeRefOrGetter<T[]>, config?: ICycleListConfig) => {
   const _config = {
     ...configDefault,
     ...config,
   }
 
-  console.log(_config)
+  //console.log(_config)
 
   const activeIndex = ref(0)
-  const _list = toRef(list)
+  const _list = toRef(list) as Ref<T[]>
 
   //const state = computed(() => _list.value[activeIndex.value])
   const state = computed({
@@ -31,7 +31,11 @@ export const useCycleList = (list: MaybeRefOrGetter<any[]>, config?: ICycleListC
       if (foundIndex != -1) {
         activeIndex.value = foundIndex
       } else {
-        throw new Error(`Index ${foundIndex} not exist`)
+        const foundFallbackIndex = _list.value.indexOf(_config.fallbackValue)
+
+        if (foundFallbackIndex == -1) {
+          throw new Error(`Index ${foundFallbackIndex} not exist`)
+        }
       }
     },
   })
@@ -54,7 +58,11 @@ export const useCycleList = (list: MaybeRefOrGetter<any[]>, config?: ICycleListC
 
   const go = (index: number) => {
     if (index >= _list.value.length) {
-      throw new Error(`${index} not found`)
+      if (typeof _config.fallbackIndex != 'undefined') {
+        activeIndex.value = _config.fallbackIndex
+      } else {
+        throw new Error(`${_config.fallbackIndex} not found`)
+      }
     } else {
       activeIndex.value = index
     }
