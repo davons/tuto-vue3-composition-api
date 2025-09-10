@@ -10,6 +10,7 @@ const score = ref(0)
 
 const start = () => {
   console.log('start...')
+  showResult.value = false
   isPlaying.value = true
   delay.value = 2000 + Math.random() * 5000
   console.log(delay.value)
@@ -31,7 +32,7 @@ const reactionTime = (value: number) => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .container {
   text-align: center;
 }
