@@ -1,19 +1,25 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from 'vue'
+import { ref } from 'vue'
+import AppModal from './components/AppModal.vue'
 
+const isOpen = ref(false)
 const title = ref('My first new App')
-const input = useTemplateRef('my-input')
+const modalHeader = ref('')
+const open = () => {
+  isOpen.value = true
+}
 
-const handleClick = () => {
-  const elem = input.value as HTMLElement
-  elem.focus()
+const close = () => {
+  isOpen.value = false
 }
 </script>
 
 <template>
   <h1>{{ title }}</h1>
-  <input type="text" ref="my-input" />
-  <button @click="handleClick">Ref</button>
+  <Teleport to=".modals">
+    <AppModal :title="modalHeader" :isOpen="isOpen" @close="close" />
+  </Teleport>
+  <button @click="open">Open</button>
 </template>
 
 <style scoped></style>
