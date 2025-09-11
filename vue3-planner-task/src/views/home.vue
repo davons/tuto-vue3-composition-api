@@ -7,13 +7,13 @@ import FilterNav, { type IFilterType } from '@/components/FilterNav.vue'
 const loading = ref(false)
 const projects = ref<IProject[]>([])
 const error = ref<string | null>(null)
-const currentFilter = ref('all')
+const currentFilter = ref<IFilterType>('all')
 
 const uri = 'http://localhost:3000/projects'
 
 const getProjects = async () => {
   loading.value = true
-
+  error.value = null
   try {
     const response = await fetch(uri)
     if (!response.ok) {
