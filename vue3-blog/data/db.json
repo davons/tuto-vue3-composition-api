@@ -1,0 +1,58 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "Welcome to the new blog",
+      "body": "Lorem ipsum dolor sit amet..",
+      "tags": [
+        "webdev",
+        "coding",
+        "news"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Top 5 css Tips",
+      "body": "Lorem ipsum dolor sit amet..",
+      "tags": [
+        "webdev",
+        "coding",
+        "css"
+      ]
+    },
+    {
+      "id": "bee8",
+      "title": "sdfsdf",
+      "body": "sdfsdf",
+      "tags": []
+    },
+    {
+      "id": "9bc9",
+      "title": "sssssffffff",
+      "body": "sssssssss",
+      "tags": []
+    },
+    {
+      "id": "ab78",
+      "title": "okay",
+      "body": "okay",
+      "tags": [
+        "q",
+        "b",
+        "d",
+        "f",
+        "sr"
+      ]
+    },
+    {
+      "id": "8dcf",
+      "title": "dd",
+      "body": "dd",
+      "tags": [
+        "fq",
+        "fsdf",
+        "sdfsdf"
+      ]
+    }
+  ]
+}
