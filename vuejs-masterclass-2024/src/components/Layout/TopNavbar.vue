@@ -39,9 +39,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
       </DropdownMenuContent>
     </DropdownMenu>
   </nav>
-  <main>
-    <RouterView />
-  </main>
 </template>
 
 <style scoped></style>
