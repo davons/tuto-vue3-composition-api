@@ -1,76 +1,30 @@
 <script setup lang="ts">
-import { supabase } from '@/lib/SupabaseClient'
-import { h, ref } from 'vue'
-import type { Tables } from '../../../database/types'
-import type { ColumnDef } from '@tanstack/vue-table'
+import { ref } from 'vue'
 import DataTable from '@/components/ui/data-table/DataTable.vue'
-import { RouterLink } from 'vue-router'
+import { usePageStore } from '@/stores/page'
+import { tasksWithProjectsQuery, type TasksWithProjects } from '@/utils/supaQueries'
+import { columns } from '@/utils/tableColumns/tasks'
 
-const tasks = ref<Tables<'tasks'>[]>([])
+usePageStore().pageData.title = 'My Tasks'
+
+const tasks = ref<TasksWithProjects | null>(null)
 
 const getTasks = async () => {
-  const { data, error } = await supabase.from('tasks').select()
+  const { data, error } = await tasksWithProjectsQuery
 
   if (error) {
     console.log(error)
   }
 
-  tasks.value = data as Tables<'tasks'>[]
+  tasks.value = data
 }
 
-;(async () => {
+/*;(async () => {
   //self executed
   await getTasks()
-})()
+})()*/
 
-const columns: ColumnDef<Tables<'tasks'>>[] = [
-  {
-    accessorKey: 'name',
-    header: () => h('div', { class: 'text-left' }, 'Name'),
-    cell: ({ row }) => {
-      return h(
-        RouterLink,
-        {
-          to: `/tasks/${row.original.id}`,
-          class: 'text-left font-medium hover:text-blue-500',
-        },
-        () => row.getValue('name'),
-      )
-    },
-  },
-  {
-    accessorKey: 'status',
-    header: () => h('div', { class: 'text-left' }, 'Status'),
-    cell: ({ row }) => {
-      return h('div', { class: 'text-left font-medium' }, row.getValue('status'))
-    },
-  },
-  {
-    accessorKey: 'due_date',
-    header: () => h('div', { class: 'text-left' }, 'Due Date'),
-    cell: ({ row }) => {
-      return h('div', { class: 'text-left font-medium' }, row.getValue('due_date'))
-    },
-  },
-  {
-    accessorKey: 'project_id',
-    header: () => h('div', { class: 'text-left' }, 'Projects'),
-    cell: ({ row }) => {
-      return h('div', { class: 'text-left font-medium' }, row.getValue('project_id'))
-    },
-  },
-  {
-    accessorKey: 'collaborators',
-    header: () => h('div', { class: 'text-left' }, 'Collaborators'),
-    cell: ({ row }) => {
-      return h(
-        'div',
-        { class: 'text-left font-medium' },
-        JSON.stringify(row.getValue('collaborators')),
-      )
-    },
-  },
-]
+await getTasks()
 </script>
 
 <template>
