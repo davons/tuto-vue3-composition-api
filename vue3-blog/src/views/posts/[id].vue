@@ -3,6 +3,7 @@ import { useRoute } from 'vue-router'
 import { usePost } from '@/composables/usePost';
 import { onMounted } from 'vue';
 import Spinner from '@/components/Spinner.vue';
+import PostShow from '@/components/PostShow.vue';
 
 const route = useRoute()
 
@@ -15,14 +16,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="post">
-  <h1>Post: #{{ idParam }}</h1>
-  <p v-if="error">{{ error }}</p>
-  <p>{{ post?.body }}</p>
-  <p>{{ post?.tags }}</p>
+   <div class="container">
+    <p v-if="error">{{ error }}</p>
+    <p  v-if="loading"><Spinner/></p>
+    <PostShow :post="post" v-if="post"/>
   </div>
-
-  <p  v-if="loading"><Spinner/></p>
 </template>
 
 <style scoped>

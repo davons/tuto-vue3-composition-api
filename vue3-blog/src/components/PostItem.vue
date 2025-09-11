@@ -15,8 +15,8 @@ const props = defineProps<{
         <h1>{{ post.title }}</h1>
       </RouterLink>
       <p>{{ post.body }}</p>
-      <span v-for="tag in post.tags" :key="tag" style="padding: 5px 5px">
-        #{{ tag }} --------
+      <span v-for="tag in post.tags" :key="tag" class="pill" style="padding: 5px 5px">
+        #{{ tag }}
       </span>
     </template>
   </div>

@@ -11,10 +11,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Posts <RouterLink to="/posts/create">Add post</RouterLink></h1>
+  <div class="container">
+  <h1>Posts</h1>
   <p v-if="error">{{ error }}</p>
   <p v-if="loading">
     <Spinner />
   </p>
   <PostItem :posts="posts" v-if="posts"/>
+  </div>
+
 </template>
+
+<style>
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+}
+</style>

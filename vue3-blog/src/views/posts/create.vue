@@ -44,7 +44,7 @@ const handleSubmit = async() => {
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <h1>Create</h1>
     <div v-if="error"> {{ error }}</div>
     <form @submit.prevent="handleSubmit">
@@ -71,7 +71,7 @@ const handleSubmit = async() => {
   </div>
 </template>
 
-<style scoped>
+<style>
 form {
   max-width: 480px;
   margin: 0 auto;

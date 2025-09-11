@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Homepage from '@/home.vue'
+
 import Posts from '@/views/posts/index.vue'
 import PostsShow from '@/views/posts/[id].vue'
 import PostsCreate from '@/views/posts/create.vue'
@@ -9,11 +9,6 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Homepage
-    },
-    {
-      path: '/posts',
       name: 'posts',
       component: Posts
     },
