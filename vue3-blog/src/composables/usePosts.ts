@@ -1,4 +1,5 @@
 import { ref } from "vue"
+import { db, auth } from "../../firebase/dbConfig"
 
 export interface IPost{
   id: string,
@@ -16,7 +17,8 @@ export const usePosts = () => {
     error.value = null
 
     try {
-      await new Promise((resolve) => {
+
+      /*await new Promise((resolve) => {
         setTimeout(() => {
           resolve(true)
         }, 2000)
@@ -26,7 +28,9 @@ export const usePosts = () => {
       if (!response.ok) {
         throw new Error(`HTTP error status : ${response.status}`)
       }
-      posts.value = await response.json()
+      posts.value = await response.json()*/
+      console.log(db)
+
     }catch(e: any) {
       error.value = e.message || 'Unknown error occured'
     } finally {

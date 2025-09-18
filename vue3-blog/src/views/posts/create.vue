@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
+import { dbFirebase } from '../../../firebase/dbConfig'
 
 const title = ref<string>('')
 const body = ref<string>('')
